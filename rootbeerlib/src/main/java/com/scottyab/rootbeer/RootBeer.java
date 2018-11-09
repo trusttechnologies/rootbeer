@@ -23,7 +23,7 @@ import java.util.Scanner;
  * Disclaimer: **root==god**, so there's no 100% way to check for root.
  */
 public class RootBeer {
-//pruebita
+
     private final Context mContext;
     private boolean loggingEnabled = true;
 
