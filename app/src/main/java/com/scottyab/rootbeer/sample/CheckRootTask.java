@@ -11,7 +11,6 @@ import com.scottyab.rootbeer.util.Utils;
 
 import java.util.ArrayList;
 
-import uk.co.barbuzz.beerprogressview.BeerProgressView;
 
 /**
  * class to pretend we are doing some really clever stuff that takes time
@@ -22,7 +21,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
 
     private static final int SLEEP_TIME = 70;
     private static final String TAG = "CheckRootTask";
-    private final BeerProgressView mBeerProgressView;
+   // private final BeerProgressView mBeerProgressView;
     private final Context mContext;
     private ArrayList<ImageView> mCheckRootimageViewList;
 
@@ -36,9 +35,9 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
     }
 
     public CheckRootTask(Context ctx, OnCheckRootFinishedListener listener,
-                         BeerProgressView beerProgressView, ArrayList<ImageView> checkRootimageViewList) {
+                         /*BeerProgressView beerProgressView,*/ ArrayList<ImageView> checkRootimageViewList) {
         mListener = listener;
-        mBeerProgressView = beerProgressView;
+       // mBeerProgressView = beerProgressView;
         mContext = ctx;
         mCheckRootimageViewList = checkRootimageViewList;
     }
@@ -54,7 +53,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
         Integer value = values[0];
-        mBeerProgressView.setBeerProgress(value);
+        //mBeerProgressView.setBeerProgress(value);
 
         int index = (value / 8) - 1;
         boolean isCheck = value % 8 == 0;

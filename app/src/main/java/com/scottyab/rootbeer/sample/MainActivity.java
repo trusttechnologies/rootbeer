@@ -8,24 +8,26 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.scottyab.rootbeer.RootBeer;
 
-import uk.co.barbuzz.beerprogressview.BeerProgressView;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity
         implements CheckRootTask.OnCheckRootFinishedListener {
+    private static final String TAG = "MainActivity";
 
     private static final String GITHUB_LINK = "https://github.com/scottyab/rootbeer";
 
     private AlertDialog infoDialog;
-    private BeerProgressView beerView;
+    //private BeerProgressView beerView;
     private MainActivity mActivity;
     private TextViewFont isRootedText;
     private ArrayList<ImageView> checkRootImageViewList;
@@ -38,15 +40,27 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initView();
+        //initView();
+        Log.d(TAG,"CREADO" + getRooted());
     }
 
+    private String getRooted() {
+
+        RootBeer rootBeer = new RootBeer(this);
+        if (rootBeer.isRooted()) {
+            return "Rooted";
+            //we found indication of root
+        } else {
+            return "No Rooted";
+            //we didn't find indication of root
+        }
+    }
     private void initView() {
         mActivity = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        beerView = (BeerProgressView) findViewById(R.id.loadingRootCheckBeerView);
+        //beerView = (BeerProgressView) findViewById(R.id.loadingRootCheckBeerView);
         isRootedText = (TextViewFont) findViewById(R.id.content_main_is_rooted_text);
         isRootedTextDisclaimer = (TextView) findViewById(R.id.content_mainisRootedTextDisclaimer);
 
@@ -74,15 +88,15 @@ public class MainActivity extends AppCompatActivity
         checkRootImageViewList.add(rootCheck10ImageView);
         checkRootImageViewList.add(rootCheck11ImageView);
 
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        //floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 floatingActionButton.setVisibility(View.GONE);
-                resetRootCheckImages();
+                resetRootCheckImages();/*
                 CheckRootTask checkRootTask = new CheckRootTask(mActivity, mActivity, beerView,
                         checkRootImageViewList);
-                checkRootTask.execute(true);
+                checkRootTask.execute(true);*/
             }
         });
     }
